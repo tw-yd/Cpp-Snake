@@ -66,14 +66,6 @@ int color(int c)//設定顏色
 }
 void printsnake()//列印字元蛇
 {
- 	gotoxy(2,5);
-	color(3);
-	printf("姓名：張小艾");
-
-	gotoxy(2,6);
-	color(3);
-	printf("學號：1910101099");
-
 	gotoxy(35,1);
  	color(6);
  	printf("/^\\/^\\");
