@@ -13,56 +13,59 @@ typedef struct snake               //蛇身的一個節點
 	int x;                        //節點的x座標
 	int y;                        //節點的y座標
 	struct snake *next;           //蛇身的下一個節點
- }snake;
- int score=0,add=10;              //總得分和每吃一次食物的得分
- int highscore=0;                 //最高分
- int status,sleeptime=200;        //蛇前進狀態，每次執行的時間間隔
- snake *head,*food;               //蛇頭指標，食物指標
- snake *q;                        //遍歷蛇時用的指標
- int endgamestatus=0;             //遊戲結束時的狀態
- HANDLE hOut;                      //控制檯控制程式碼
- void gotoxy(int x,int y);
- int color(int c);
- void printsnake();
- void wlcome();
- void createmap();
- void scoreandtips();
- void initsnake();
- void createfood();
- int biteself();
- void cantcrosswall();
- void speedup();
- void speeddown();
- void snakemove();
- void keyboardcontrol();
- void lostdraw();
- void endgame();
- void choose();
- void file_out();
- void file_in();
- void explation();
- main()
- {
+}snake;
+int score=0,add=10;              //總得分和每吃一次食物的得分
+int highscore=0;                 //最高分
+int status,sleeptime=200;        //蛇前進狀態，每次執行的時間間隔
+snake *head,*food;               //蛇頭指標，食物指標
+snake *q;                        //遍歷蛇時用的指標
+int endgamestatus=0;             //遊戲結束時的狀態
+HANDLE hOut;                      //控制檯控制程式碼
+void gotoxy(int x,int y);
+int color(int c);
+void printsnake();
+void wlcome();
+void createmap();
+void scoreandtips();
+void initsnake();
+void createfood();
+int biteself();
+void cantcrosswall();
+void speedup();
+void speeddown();
+void snakemove();
+void keyboardcontrol();
+void lostdraw();
+void endgame();
+void choose();
+void file_out();
+void file_in();
+void explation();
+
+main()
+{
     system("mode con cols=100 lines=30");
     printsnake();
     wlcome();
     file_out();
     keyboardcontrol();
     endgame();
- }
+}
+
  void gotoxy(int x,int y)//設定遊標位置
- {COORD c;
-  c.X=x;
-  c.Y=y;
-  SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c); //定位遊標的位置
-   }
- int color(int c)//設定顏色
- {
- SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),c);
- return 0;
-  }
- void printsnake()//列印字元蛇
- {
+{COORD c;
+    c.X=x;
+    c.Y=y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c); //定位遊標的位置
+}
+
+int color(int c)//設定顏色
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),c);
+    return 0;
+}
+void printsnake()//列印字元蛇
+{
  	gotoxy(2,5);
 	color(3);
 	printf("姓名：張小艾");
@@ -153,7 +156,7 @@ typedef struct snake               //蛇身的一個節點
 
  	gotoxy(35,16);
  	printf("~--____-~                ~-___-~");
- 	}
+}
 
  void wlcome()//歡迎介面
  {int n;
@@ -200,13 +203,13 @@ typedef struct snake               //蛇身的一個節點
 	 break;
 	 case 2:
 	 	explation();
-	 	break;
-	 break;
-	 case 3:
-	 	   exit(0);
-	 break;
-	 }
-	}
+        break;
+    break;
+    case 3:
+        exit(0);
+    break;
+    }
+}
 void createmap()//建立地圖
 {
 	int i,j;
@@ -273,9 +276,10 @@ void file_out()//開啟檔案記錄最高分
 	fp=fopen("save.txt","a+");
 	fscanf(fp,"%d",&highscore);
 	fclose(fp);
- }
- void initsnake()
- {
+}
+
+void initsnake()
+{
  	snake *tail;
  	int i;
  	tail=(snake*)malloc(sizeof(snake));
@@ -322,6 +326,7 @@ void createfood()//隨機出現食物
    color(12);
    printf("@");
 }
+
 int biteself()
 {
 	snake *self;                //定義self為蛇身上除蛇頭以外的節點
@@ -335,17 +340,18 @@ int biteself()
 		self=self->next;
 	}
 	return 0;
- }
+}
 
-  void cantcrosswall()
+void cantcrosswall()
 {
 	if(head->x==0||head->x==56||head->y==0||head->y==26)
 	{
 		endgamestatus=1;
 		endgame();
 	}
- }
-  void speedup()//加速
+}
+
+void speedup()//加速
 {
 	if(sleeptime>=50)
 	{
@@ -756,6 +762,4 @@ void lostdraw()
 	  system("cls");
 	  printsnake();
 	  wlcome();
-
-  }
-
+}
